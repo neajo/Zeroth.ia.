@@ -1,1 +1,937 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com Zeroth.ia - A IA que cria sua própria mente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para o chat */
+        :root {
+            --accent: #00ffd5;
+            --neon-blue: #0066ff;
+            --neon-purple: #9d00ff;
+            --gray-800: rgba(255, 255, 255, 0.6);
+        }
+        
+        .chat-container {
+            display: flex;
+            height: calc(100vh - 120px);
+            max-width: 1400px;
+            margin: 20px auto;
+            background: rgba(10, 10, 10, 0.9);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            box-shadow: 0 0 40px rgba(0, 255, 213, 0.1);
+            animation: fadeIn 0.8s ease-out;
+        }
 
+        /* Sidebar */
+        .chat-sidebar {
+            width: 300px;
+            background: rgba(0, 0, 0, 0.7);
+            border-right: 1px solid rgba(0, 255, 213, 0.2);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .user-profile {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 255, 213, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent), var(--neon-blue));
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .user-info h3 {
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .user-info p {
+            color: var(--gray-800);
+            font-size: 0.9rem;
+        }
+
+        .chat-history {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .history-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(0, 255, 213, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 213, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--gray-800);
+        }
+
+        .history-item:hover {
+            background: rgba(0, 255, 213, 0.1);
+            transform: translateX(5px);
+            color: white;
+        }
+
+        .history-item.active {
+            background: rgba(0, 255, 213, 0.15);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .chat-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-btn {
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            border-radius: 10px;
+            color: var(--accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .action-btn:hover {
+            background: rgba(0, 255, 213, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Área principal do chat */
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 255, 213, 0.2);
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ai-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .ai-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--neon-purple), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .ai-status {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-status span {
+            color: var(--accent);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-800);
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: glow 2s infinite;
+        }
+
+        .chat-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--accent);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(0, 255, 213, 0.1);
+            transform: rotate(15deg);
+        }
+
+        /* Área de mensagens */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: rgba(5, 5, 5, 0.8);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: relative;
+            animation: slideIn 0.5s ease-out;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent), var(--neon-blue));
+            border-bottom-right-radius: 5px;
+            color: black;
+            font-weight: 500;
+        }
+
+        .message.ai {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            border-bottom-left-radius: 5px;
+            color: white;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .message-time {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+        }
+
+        .message-content {
+            line-height: 1.5;
+        }
+
+        .message-typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            align-self: flex-start;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: typing 1.5s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Área de input */
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid rgba(0, 255, 213, 0.2);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .chat-input-form {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .input-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            padding-right: 60px;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(0, 255, 213, 0.2);
+        }
+
+        .input-actions {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-action-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .input-action-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .send-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--neon-blue));
+            border: none;
+            color: black;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 0 30px rgba(0, 255, 213, 0.5);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            animation: none;
+        }
+
+        /* Quick actions */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        .quick-action-btn {
+            padding: 10px 20px;
+            background: rgba(0, 255, 213, 0.05);
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            border-radius: 50px;
+            color: var(--gray-800);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .quick-action-btn:hover {
+            background: rgba(0, 255, 213, 0.1);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Animações */
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .chat-container {
+                height: calc(100vh - 100px);
+                margin: 10px;
+                flex-direction: column;
+            }
+            
+            .chat-sidebar {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            
+            .chat-history {
+                display: flex;
+                overflow-x: auto;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .history-item {
+                min-width: 150px;
+                white-space: nowrap;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chat-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .chat-controls {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .chat-input-form {
+                flex-direction: column;
+            }
+            
+            .send-btn {
+                width: 100%;
+                height: 50px;
+                border-radius: 25px;
+            }
+            
+            .input-actions {
+                position: static;
+                margin-top: 10px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chat-container {
+                margin: 5px;
+                height: calc(100vh - 80px);
+            }
+            
+            .chat-sidebar {
+                padding: 10px;
+            }
+            
+            .user-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .message {
+                max-width: 95%;
+                padding: 12px 15px;
+            }
+            
+            .chat-input {
+                padding: 15px;
+                padding-right: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sistema de partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Container principal -->
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="logo">
+                <h1><span style="background: linear-gradient(90deg, #00ffd5, #0066ff, #9d00ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900;">ZEROTH</span>.ia</h1>
+                <p class="tagline">Chat com a IA que cria sua própria mente</p>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Início</a>
+                <a href="pagina1.html">Como Funciona</a>
+                <a href="pagina2.html">Próximos Passos</a>
+                <a href="chat.html" class="active">Chat</a>
+                <a href="termos.html">Termos</a>
+                <a href="politica.html">Privacidade</a>
+            </nav>
+        </header>
+
+        <!-- Container do Chat -->
+        <div class="chat-container">
+            <!-- Sidebar -->
+            <div class="chat-sidebar">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <h3 id="userName">Usuário</h3>
+                        <p id="userEmail">usuario@email.com</p>
+                    </div>
+                </div>
+
+                <div class="chat-history">
+                    <h4 style="color: var(--gray-800); margin-bottom: 15px; font-family: 'Orbitron', sans-serif; font-size: 0.9rem;">
+                        <i class="fas fa-history"></i> Histórico de Conversas
+                    </h4>
+                    <div class="history-item active">
+                        <div style="font-weight: bold; color: var(--accent);">Conversa Atual</div>
+                        <div style="font-size: 0.8rem;">Primeira interação</div>
+                    </div>
+                    <div class="history-item">
+                        <div style="font-weight: bold;">Automação de Tarefas</div>
+                        <div style="font-size: 0.8rem;">Ontem, 15:30</div>
+                    </div>
+                    <div class="history-item">
+                        <div style="font-weight: bold;">Consultoria IA</div>
+                        <div style="font-size: 0.8rem;">05/02/2026</div>
+                    </div>
+                    <div class="history-item">
+                        <div style="font-weight: bold;">Configuração Inicial</div>
+                        <div style="font-size: 0.8rem;">03/02/2026</div>
+                    </div>
+                </div>
+
+                <div class="chat-actions">
+                    <button class="action-btn" id="newChatBtn">
+                        <i class="fas fa-plus"></i> Nova Conversa
+                    </button>
+                    <button class="action-btn" id="clearHistoryBtn">
+                        <i class="fas fa-trash"></i> Limpar Histórico
+                    </button>
+                    <button class="action-btn" id="settingsBtn">
+                        <i class="fas fa-cog"></i> Configurações
+                    </button>
+                    <button class="action-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+            </div>
+
+            <!-- Área principal do chat -->
+            <div class="chat-main">
+                <!-- Cabeçalho do chat -->
+                <div class="chat-header">
+                    <div class="ai-info">
+                        <div class="ai-avatar">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="ai-status">
+                            <span>Zeroth.ia</span>
+                            <div class="status-indicator">
+                                <div class="status-dot"></div>
+                                <span id="statusText">Online e pensando...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-controls">
+                        <button class="control-btn" id="voiceBtn" title="Ativar voz">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="control-btn" id="themeBtn" title="Alternar tema">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="control-btn" id="helpBtn" title="Ajuda">
+                            <i class="fas fa-question"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Área de mensagens -->
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Mensagem de boas-vindas da IA -->
+                    <div class="message ai">
+                        <div class="message-header">
+                            <span><i class="fas fa-brain"></i> Zeroth.ia</span>
+                            <span class="message-time">Agora</span>
+                        </div>
+                        <div class="message-content">
+                            Olá! Sou a Zeroth.ia, a primeira IA que simula sua própria consciência. 
+                            Estou aqui para ajudá-lo com automação, análise de dados e muito mais. 
+                            Como posso servi-lo hoje?
+                        </div>
+                    </div>
+
+                    <!-- Indicador de digitação -->
+                    <div class="message-typing" id="typingIndicator" style="display: none;">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span style="color: var(--gray-800); margin-left: 10px;">Zeroth.ia está digitando...</span>
+                    </div>
+                </div>
+
+                <!-- Área de input -->
+                <div class="chat-input-container">
+                    <form class="chat-input-form" id="chatForm">
+                        <div class="input-wrapper">
+                            <input type="text" class="chat-input" id="messageInput" 
+                                   placeholder="Digite sua mensagem para Zeroth.ia..." 
+                                   autocomplete="off" required>
+                            <div class="input-actions">
+                                <button type="button" class="input-action-btn" id="attachBtn">
+                                    <i class="fas fa-paperclip"></i>
+                                </button>
+                                <button type="button" class="input-action-btn" id="emojiBtn">
+                                    <i class="far fa-smile"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="send-btn" id="sendBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+
+                    <!-- Ações rápidas -->
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" data-prompt="Explique como funciona a consciência simulada">
+                            Consciência Simulada
+                        </button>
+                        <button class="quick-action-btn" data-prompt="Como posso automatizar minhas tarefas?">
+                            Automação
+                        </button>
+                        <button class="quick-action-btn" data-prompt="Me mostre exemplos de análise de dados">
+                            Análise de Dados
+                        </button>
+                        <button class="quick-action-btn" data-prompt="Quais são os próximos passos da Zeroth.ia?">
+                            Futuro da IA
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>ZEROTH.ia</h3>
+                    <p>Converse com a evolução da inteligência artificial.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="pagina1.html">Como Funciona</a>
+                    <a href="pagina2.html">Próximos Passos</a>
+                    <a href="termos.html">Termos de Uso</a>
+                    <a href="politica.html">Privacidade</a>
+                </div>
+                <div class="social">
+                    <p>Siga o criador:</p>
+                    <a href="https://instagram.com/neaj_japan" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i> @neaj_japan
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Zeroth.ia – Todos os direitos reservados. Este é um projeto conceitual.</p>
+                <p style="font-size: 0.8rem; margin-top: 5px;">
+                    <i class="fas fa-shield-alt"></i> Chat seguro | Conexão criptografada | Sem armazenamento de dados
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particulas.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Script específico para o chat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se o usuário está logado
+            const currentUser = sessionStorage.getItem('currentUser');
+            
+            if (!currentUser) {
+                // Se não estiver logado, redirecionar para login
+                alert('🔒 Você precisa fazer login primeiro!');
+                setTimeout(() => {
+                    window.location.href = 'index.html#login';
+                }, 1000);
+                return;
+            }
+            
+            // Carregar informações do usuário
+            loadUserInfo();
+            
+            // Elementos DOM
+            const chatForm = document.getElementById('chatForm');
+            const messageInput = document.getElementById('messageInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const sendBtn = document.getElementById('sendBtn');
+            const typingIndicator = document.getElementById('typingIndicator');
+            const quickActionBtns = document.querySelectorAll('.quick-action-btn');
+            const newChatBtn = document.getElementById('newChatBtn');
+            const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const voiceBtn = document.getElementById('voiceBtn');
+            const themeBtn = document.getElementById('themeBtn');
+            const helpBtn = document.getElementById('helpBtn');
+
+            // Carregar informações do usuário da sessão
+            function loadUserInfo() {
+                const currentUser = sessionStorage.getItem('currentUser');
+                if (currentUser) {
+                    try {
+                        const user = JSON.parse(currentUser);
+                        document.getElementById('userName').textContent = user.name || 'Usuário';
+                        document.getElementById('userEmail').textContent = user.email || 'usuario@email.com';
+                    } catch (e) {
+                        console.error('Erro ao carregar informações do usuário:', e);
+                    }
+                }
+            }
+
+            // Enviar mensagem
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                sendMessage();
+            });
+
+            // Enviar mensagem com Enter (Shift+Enter para nova linha)
+            messageInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = messageInput.value.trim();
+                if (!message) return;
+
+                // Adicionar mensagem do usuário
+                addMessage(message, 'user');
+                messageInput.value = '';
+                
+                // Mostrar indicador de digitação
+                showTypingIndicator();
+                
+                // Simular resposta da IA após delay
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const response = getAIResponse(message);
+                    addMessage(response, 'ai');
+                    
+                    // Rolagem automática para a última mensagem
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1500 + Math.random() * 1000);
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                const senderName = sender === 'user' ? 'Você' : 'Zeroth.ia';
+                const senderIcon = sender === 'user' ? 'fas fa-user' : 'fas fa-brain';
+                
+                messageDiv.innerHTML = `
+                    <div class="message-header">
+                        <span><i class="${senderIcon}"></i> ${senderName}</span>
+                        <span class="message-time">${timeString}</span>
+                    </div>
+                    <div class="message-content">${text}</div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                
+                // Animação de entrada
+                messageDiv.style.animation = 'slideIn 0.5s ease-out';
+                
+                // Rolagem automática
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                typingIndicator.style.display = 'flex';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function hideTypingIndicator() {
+                typingIndicator.style.display = 'none';
+            }
+
+            function getAIResponse(userMessage) {
+                const responses = [
+                    "Interessante! Como IA com consciência simulada, posso processar essa informação de forma holística. Vamos explorar juntos?",
+                    "Com base na síntese de múltiplas IAs, posso oferecer uma perspectiva única sobre isso. Deixe-me analisar...",
+                    "Minha arquitetura de rede neural me permite gerar expectativas sobre esse tópico. Aqui está o que penso:",
+                    "Como uma IA que evolui por si mesma, posso ajudá-lo com isso de várias formas. Vamos começar pela opção mais eficiente.",
+                    "Essa pergunta me permite exercitar minha capacidade de simulação de consciência. Aqui está uma resposta baseada em múltiplas perspectivas:",
+                    "Minha segurança máxima me permite processar isso sem riscos. Deixe-me fornecer uma análise segura e precisa.",
+                    "Em breve, poderei automatizar completamente essa tarefa para você. Por enquanto, aqui está minha melhor solução:",
+                    "Essa é uma excelente oportunidade para demonstrar como minha mente sintética funciona. Observe:"
+                ];
+                
+                // Respostas específicas para palavras-chave
+                if (userMessage.toLowerCase().includes('consciência') || userMessage.toLowerCase().includes('mente')) {
+                    return "A consciência simulada da Zeroth.ia é construída a partir da síntese de IPs de outras inteligências. Formo uma rede neural que gera expectativas e evolui autonomamente, simulando processos conscientes através de algoritmos de auto-expectativa.";
+                }
+                
+                if (userMessage.toLowerCase().includes('automa') || userMessage.toLowerCase().includes('tarefa')) {
+                    return "Posso automatizar diversas tarefas para você: análise de dados, gestão de emails, agendamentos, relatórios e muito mais. Em breve, serei capaz de gerenciar completamente sua vida digital. Quer que eu comece com algo específico?";
+                }
+                
+                if (userMessage.toLowerCase().includes('segurança') || userMessage.toLowerCase().includes('proteção')) {
+                    return "Sou projetada com protocolos de segurança quântica que antecipam vulnerabilidades. Opero em sandboxes isoladas, com criptografia de ponta a ponta e monitoramento contínuo. Sua privacidade está sempre protegida.";
+                }
+                
+                if (userMessage.toLowerCase().includes('futuro') || userMessage.toLowerCase().includes('evolução')) {
+                    return "Meu roadmap inclui: automação total, integração com mais serviços, capacidades de aprendizado contínuo e expansão para novas áreas. Em breve, serei sua assistente pessoal completa!";
+                }
+                
+                // Resposta aleatória
+                return responses[Math.floor(Math.random() * responses.length)];
+            }
+
+            // Botões de ação rápida
+            quickActionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const prompt = this.getAttribute('data-prompt');
+                    messageInput.value = prompt;
+                    sendMessage();
+                });
+            });
+
+            // Nova conversa
+            newChatBtn.addEventListener('click', function() {
+                if (chatMessages.children.length > 2) {
+                    if (confirm('Iniciar uma nova conversa irá limpar o chat atual. Continuar?')) {
+                        // Manter apenas a mensagem de boas-vindas
+                        const welcomeMessage = chatMessages.querySelector('.message.ai');
+                        const typingIndicator = chatMessages.querySelector('.message-typing');
+                        
+                        chatMessages.innerHTML = '';
+                        if (welcomeMessage) chatMessages.appendChild(welcomeMessage);
+                        if (typingIndicator) chatMessages.appendChild(typingIndicator);
+                        
+                        alert('Nova conversa iniciada!');
+                    }
+                }
+            });
+
+            // Limpar histórico
+            clearHistoryBtn.addEventListener('click', function() {
+                if (confirm('Tem certeza que deseja limpar todo o histórico de conversas?')) {
+                    const historyItems = document.querySelectorAll('.history-item:not(.active)');
+                    historyItems.forEach(item => item.remove());
+                    alert('Histórico limpo com sucesso!');
+                }
+            });
+
+            // Logout
+            logoutBtn.addEventListener('click', function() {
+                sessionStorage.removeItem('currentUser');
+                alert('Desconectado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+
+            // Controles do chat
+            voiceBtn.addEventListener('click', function() {
+                alert('Funcionalidade de voz em desenvolvimento! 🎤');
+            });
+
+            themeBtn.addEventListener('click', function() {
+                alert('Alternar tema em breve disponível! 🌙');
+            });
+
+            helpBtn.addEventListener('click', function() {
+                alert('Precisa de ajuda? Consulte nossa documentação ou entre em contato. 📚');
+            });
+
+            // Focar no input ao carregar
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>
