@@ -3,17 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade – Zeroth.ia</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Política de Privacidade - Zeroth.ia</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/ios-filled/50/00ffd5/artificial-intelligence.png">
+    <style>
+        /* Estilos específicos para política de privacidade */
+        .privacy-section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .privacy-section:nth-child(1) { animation-delay: 0.1s; }
+        .privacy-section:nth-child(2) { animation-delay: 0.2s; }
+        .privacy-section:nth-child(3) { animation-delay: 0.3s; }
+        .privacy-section:nth-child(4) { animation-delay: 0.4s; }
+        .privacy-section:nth-child(5) { animation-delay: 0.5s; }
+        .privacy-section:nth-child(6) { animation-delay: 0.6s; }
+        
+        .privacy-point {
+            background: rgba(10, 10, 10, 0.6);
+            border-left: 3px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 10px 10px 0;
+            transition: var(--transition-smooth);
+        }
+        
+        .privacy-point:hover {
+            background: rgba(0, 255, 213, 0.05);
+            transform: translateX(10px);
+        }
+        
+        .privacy-list {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+        
+        .privacy-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .privacy-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            animation: glow 2s infinite;
+        }
+        
+        .update-info {
+            background: rgba(0, 255, 213, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+        
+        .contact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--accent);
+            margin: 1rem 0;
+            animation: pulse 2s infinite;
+        }
+    </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Sistema de Partículas -->
+    <div id="particles"></div>
+
     <div class="container">
+        <!-- Cabeçalho -->
         <header class="header">
-            <div class="logo">
-                <h1><a href="index.html"><span class="gradient-text">Zeroth.ia</span></a></h1>
-                <p class="tagline">Política de Privacidade</p>
-            </div>
+            <a href="index.html" class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>ZEROTH<span class="logo-dot">.ia</span></h1>
+                    <p class="tagline">Política de Privacidade</p>
+                </div>
+            </a>
             <nav class="nav">
                 <a href="index.html">Início</a>
                 <a href="pagina1.html">Como Funciona</a>
@@ -23,56 +107,428 @@
             </nav>
         </header>
 
+        <!-- Conteúdo Principal -->
         <main class="main-content">
-            <h2 class="page-title">Política de Privacidade</h2>
-            <p><strong>Última atualização:</strong> 09 de fevereiro de 2026</p>
+            <h2 class="page-title">Política de <span class="typewriter-text">Privacidade</span></h2>
             
-            <section class="content-section">
-                <h3>1. Dados que Coletamos</h3>
-                <p>Para fornecer o serviço, coletamos:</p>
-                <ul>
-                    <li><strong>Dados de registro:</strong> nome, e‑mail, senha (criptografada).</li>
-                    <li><strong>Dados de uso:</strong> interações com a IA, comandos, preferências.</li>
-                    <li><strong>Dados técnicos:</strong> IP, navegador, sistema operacional, datas de acesso.</li>
-                </ul>
+            <!-- Informação de Atualização -->
+            <div class="update-info">
+                <h3><i class="fas fa-calendar-alt"></i> Última Atualização</h3>
+                <p>Esta política foi atualizada em <strong>09 de fevereiro de 2026</strong></p>
+                <p style="color: var(--gray-800); margin-top: 0.5rem;">
+                    <i class="fas fa-info-circle"></i> Recomendamos que leia esta política periodicamente para se manter informado sobre como protegemos suas informações.
+                </p>
+            </div>
+
+            <!-- Seção 1: Dados Coletados -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-database"></i> 1. Dados que Coletamos</h3>
+                <p>A Zeroth.ia coleta apenas os dados necessários para fornecer nossos serviços de inteligência artificial avançada. Coletamos três tipos principais de dados:</p>
                 
-                <h3>2. Como Usamos os Dados</h3>
-                <p>Os dados são utilizados para:</p>
-                <ul>
-                    <li>Operar e melhorar a plataforma Zeroth.ia.</li>
-                    <li>Personalizar a experiência da IA para cada usuário.</li>
-                    <li>Garantir a segurança e prevenir abusos.</li>
-                    <li>Enviar comunicações importantes sobre o serviço.</li>
-                </ul>
+                <div class="privacy-point">
+                    <h4><i class="fas fa-user-circle"></i> Dados de Registro</h4>
+                    <p>Quando você cria uma conta, coletamos:</p>
+                    <ul class="privacy-list">
+                        <li><strong>Nome completo</strong> - Para personalização do serviço</li>
+                        <li><strong>Endereço de e-mail</strong> - Para comunicação e recuperação de conta</li>
+                        <li><strong>Senha criptografada</strong> - Armazenada com hash SHA-256</li>
+                        <li><strong>Data de criação da conta</strong> - Para histórico e segurança</li>
+                    </ul>
+                </div>
                 
-                <h3>3. Compartilhamento com Terceiros</h3>
-                <p>Não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros, exceto:</p>
-                <ul>
-                    <li>Quando exigido por lei.</li>
-                    <li>Para proteger direitos, propriedade ou segurança da Zeroth.ia.</li>
-                    <li>Com serviços de hospedagem e análise que trabalham sob contrato de confidencialidade.</li>
-                </ul>
+                <div class="privacy-point">
+                    <h4><i class="fas fa-chart-line"></i> Dados de Uso</h4>
+                    <p>Para melhorar nossos serviços, coletamos:</p>
+                    <ul class="privacy-list">
+                        <li><strong>Interações com a IA</strong> - Comandos, perguntas e respostas</li>
+                        <li><strong>Preferências de uso</strong> - Configurações personalizadas</li>
+                        <li><strong>Padrões de comportamento</strong> - Para adaptação da IA</li>
+                        <li><strong>Feedback e avaliações</strong> - Para melhorar a precisão</li>
+                    </ul>
+                </div>
                 
-                <h3>4. Segurança</h3>
-                <p>Adotamos medidas técnicas e organizacionais para proteger seus dados, incluindo criptografia, firewalls e acesso restrito. No entanto, nenhum sistema é 100% seguro; recomendamos que você use senhas fortes e mantenha seu login em segredo.</p>
-                
-                <h3>5. Seus Direitos</h3>
-                <p>Você pode, a qualquer momento:</p>
-                <ul>
-                    <li>Acessar, corrigir ou excluir seus dados pessoais.</li>
-                    <li>Solicitar a portabilidade dos dados.</li>
-                    <li>Revogar seu consentimento para o tratamento de dados.</li>
-                    <li>Para exercer esses direitos, entre em contato através da página <a href="pagina2.html">Próximos Passos</a>.</li>
-                </ul>
-                
-                <h3>6. Alterações nesta Política</h3>
-                <p>Podemos atualizar esta política periodicamente. A versão mais recente estará sempre nesta página.</p>
+                <div class="privacy-point">
+                    <h4><i class="fas fa-laptop-code"></i> Dados Técnicos</h4>
+                    <p>Para segurança e otimização, coletamos:</p>
+                    <ul class="privacy-list">
+                        <li><strong>Endereço IP</strong> - Anonimizado após 30 dias</li>
+                        <li><strong>Informações do navegador</strong> - Tipo e versão</li>
+                        <li><strong>Sistema operacional</strong> - Para compatibilidade</li>
+                        <li><strong>Horários de acesso</strong> - Para análise de carga</li>
+                        <li><strong>Cookies essenciais</strong> - Apenas para funcionalidade</li>
+                    </ul>
+                </div>
             </section>
+
+            <!-- Seção 2: Uso dos Dados -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-cogs"></i> 2. Como Utilizamos Seus Dados</h3>
+                <p>Seus dados são utilizados exclusivamente para melhorar sua experiência com a Zeroth.ia:</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-rocket"></i> Operação do Serviço</h4>
+                    <ul class="privacy-list">
+                        <li>Fornecer e manter a plataforma Zeroth.ia</li>
+                        <li>Processar suas interações com a IA em tempo real</li>
+                        <li>Personalizar respostas baseadas no seu histórico</li>
+                        <li>Enviar notificações importantes sobre o serviço</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-chart-bar"></i> Melhoria Contínua</h4>
+                    <ul class="privacy-list">
+                        <li>Treinar e melhorar os algoritmos de IA</li>
+                        <li>Otimizar a performance da plataforma</li>
+                        <li>Desenvolver novos recursos e funcionalidades</li>
+                        <li>Analisar padrões de uso para melhor experiência</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-shield-alt"></i> Segurança e Prevenção</h4>
+                    <ul class="privacy-list">
+                        <li>Detectar e prevenir atividades fraudulentas</li>
+                        <li>Proteger contra acessos não autorizados</li>
+                        <li>Cumprir obrigações legais e regulatórias</li>
+                        <li>Resolver problemas técnicos e bugs</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção 3: Compartilhamento -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-share-alt"></i> 3. Compartilhamento com Terceiros</h3>
+                <p>Valorizamos sua privacidade. Seus dados <strong>nunca são vendidos</strong> a terceiros. O compartilhamento ocorre apenas em situações específicas:</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-user-check"></i> Com seu Consentimento</h4>
+                    <p>Apenas compartilhamos dados quando você autoriza explicitamente.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-balance-scale"></i> Por Requisitos Legais</h4>
+                    <p>Quando exigido por lei, regulamento ou processo legal.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-handshake"></i> Parceiros de Serviço</h4>
+                    <p>Com empresas que nos ajudam a operar, sob contratos de confidencialidade:</p>
+                    <ul class="privacy-list">
+                        <li><strong>Hospedagem de dados</strong> - Servidores seguros na AWS</li>
+                        <li><strong>Processamento de pagamentos</strong> - Stripe (dados financeiros)</li>
+                        <li><strong>Análise de dados</strong> - Google Analytics (anonimizado)</li>
+                        <li><strong>Suporte ao cliente</strong> - Zendesk (apenas dados necessários)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Seção 4: Segurança -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-lock"></i> 4. Medidas de Segurança</h3>
+                <p>Implementamos múltiplas camadas de segurança para proteger seus dados:</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-key"></i> Criptografia Avançada</h4>
+                    <ul class="privacy-list">
+                        <li><strong>Dados em trânsito</strong> - TLS 1.3 (HTTPS)</li>
+                        <li><strong>Dados em repouso</strong> - AES-256 bit encryption</li>
+                        <li><strong>Senhas</strong> - Hash com salt único por usuário</li>
+                        <li><strong>Tokens de sessão</strong> - JWT com expiração curta</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-shield-virus"></i> Proteções Técnicas</h4>
+                    <ul class="privacy-list">
+                        <li>Firewalls de última geração</li>
+                        <li>Sistemas de detecção de intrusão</li>
+                        <li>Monitoramento 24/7 de segurança</li>
+                        <li>Backups diários criptografados</li>
+                        <li>Ambientes de sandbox para desenvolvimento</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-user-shield"></i> Controles de Acesso</h4>
+                    <ul class="privacy-list">
+                        <li>Autenticação de dois fatores opcional</li>
+                        <li>Logs detalhados de acesso</li>
+                        <li>Permissões baseadas em função (RBAC)</li>
+                        <li>Revisões regulares de segurança</li>
+                        <li>Treinamento de equipe em privacidade</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 1.5rem; color: var(--gray-800);">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>Aviso Importante:</strong> Nenhum sistema é 100% seguro. Recomendamos que você use senhas fortes, nunca compartilhe seu login e mantenha seu software atualizado.
+                </p>
+            </section>
+
+            <!-- Seção 5: Seus Direitos -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-gavel"></i> 5. Seus Direitos de Privacidade</h3>
+                <p>De acordo com a LGPD (Lei Geral de Proteção de Dados) e GDPR, você tem os seguintes direitos:</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-eye"></i> Direito de Acesso</h4>
+                    <p>Solicitar uma cópia de todos os dados que temos sobre você.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-edit"></i> Direito de Retificação</h4>
+                    <p>Corrigir dados incompletos, inexatos ou desatualizados.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-trash-alt"></i> Direito de Exclusão</h4>
+                    <p>Solicitar a exclusão de seus dados pessoais ("direito ao esquecimento").</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-pause-circle"></i> Direito de Restrição</h4>
+                    <p>Solicitar a limitação do processamento de seus dados.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-file-export"></i> Direito de Portabilidade</h4>
+                    <p>Receber seus dados em formato estruturado e comumente usado.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-ban"></i> Direito de Oposição</h4>
+                    <p>Opor-se ao processamento de dados para fins específicos.</p>
+                </div>
+                
+                <div class="contact-badge">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Para exercer seus direitos:</strong>
+                        <p>Envie um e-mail para <span style="color: var(--accent);">privacidade@zeroth.ia</span></p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 1.5rem;">
+                    <i class="fas fa-clock"></i> Responderemos sua solicitação em até <strong>30 dias</strong>. Pode ser solicitada verificação de identidade para proteção.
+                </p>
+            </section>
+
+            <!-- Seção 6: Cookies -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-cookie-bite"></i> 6. Uso de Cookies</h3>
+                <p>Utilizamos cookies apenas para funcionalidade essencial:</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-cookie"></i> Cookies Essenciais</h4>
+                    <ul class="privacy-list">
+                        <li><strong>Sessão de login</strong> - Manter você conectado</li>
+                        <li><strong>Preferências</strong> - Lembrar suas configurações</li>
+                        <li><strong>Segurança</strong> - Prevenir ataques CSRF</li>
+                        <li><strong>Performance</strong> - Otimizar carregamento</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-chart-pie"></i> Cookies Analíticos</h4>
+                    <p><strong>Google Analytics</strong> - Coletamos dados anonimizados sobre:</p>
+                    <ul class="privacy-list">
+                        <li>Páginas visitadas e tempo gasto</li>
+                        <li>Dispositivos e navegadores utilizados</li>
+                        <li>País e cidade (nível geral)</li>
+                        <li>Fontes de tráfego</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--gray-800);">
+                        <i class="fas fa-user-secret"></i> Todos os dados são agregados e não identificam indivíduos.
+                    </p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-sliders-h"></i> Controle de Cookies</h4>
+                    <p>Você pode controlar cookies através das configurações do seu navegador:</p>
+                    <ul class="privacy-list">
+                        <li><strong>Chrome:</strong> Configurações → Privacidade e segurança → Cookies</li>
+                        <li><strong>Firefox:</strong> Opções → Privacidade e Segurança → Cookies</li>
+                        <li><strong>Safari:</strong> Preferências → Privacidade → Gerenciamento de cookies</li>
+                        <li><strong>Edge:</strong> Configurações → Cookies e permissões do site</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: var(--accent);">
+                        <i class="fas fa-exclamation-circle"></i> Desabilitar cookies essenciais pode afetar o funcionamento do site.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Seção 7: Menores de Idade -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-child"></i> 7. Proteção de Menores</h3>
+                <p>A Zeroth.ia não é destinada a menores de 16 anos. Não coletamos intencionalmente dados de crianças.</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-user-times"></i> Se você é menor de 16 anos:</h4>
+                    <ul class="privacy-list">
+                        <li>Não crie uma conta na Zeroth.ia</li>
+                        <li>Não forneça qualquer informação pessoal</li>
+                        <li>Peça permissão aos seus pais/responsáveis</li>
+                        <li>Use apenas sob supervisão adulta</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-users"></i> Para pais e responsáveis:</h4>
+                    <p>Se descobrirmos que coletamos dados de menores sem consentimento, faremos imediatamente:</p>
+                    <ul class="privacy-list">
+                        <li>Exclusão de todos os dados da criança</li>
+                        <li>Encerramento da conta associada</li>
+                        <li>Notificação aos responsáveis</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 1.5rem;">
+                    Para reportar dados de menores coletados inadvertidamente:
+                    <a href="mailto:protecao-menores@zeroth.ia" style="color: var(--accent); text-decoration: none;">
+                        <i class="fas fa-envelope"></i> protecao-menores@zeroth.ia
+                    </a>
+                </p>
+            </section>
+
+            <!-- Seção 8: Alterações -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-sync-alt"></i> 8. Alterações nesta Política</h3>
+                <p>Podemos atualizar esta Política de Privacidade periodicamente para refletir:</p>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-plus-circle"></i> Novos Recursos</h4>
+                    <p>Quando adicionarmos novas funcionalidades à plataforma.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-balance-scale"></i> Mudanças Legais</h4>
+                    <p>Para cumprir novas leis ou regulamentações.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-chart-line"></i> Melhorias de Processo</h4>
+                    <p>Para implementar práticas mais transparentes.</p>
+                </div>
+                
+                <div class="privacy-point">
+                    <h4><i class="fas fa-bell"></i> Notificações de Mudanças</h4>
+                    <p>Notificaremos você sobre mudanças significativas por:</p>
+                    <ul class="privacy-list">
+                        <li>E-mail (para usuários registrados)</li>
+                        <li>Banner no site (para todos os visitantes)</li>
+                        <li>Atualização da data no topo desta página</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(0, 255, 213, 0.05); border-radius: 10px; border-left: 3px solid var(--accent);">
+                    <i class="fas fa-info-circle"></i> <strong>Continuidade do uso:</strong> O uso continuado da Zeroth.ia após alterações significa que você aceita a nova versão da política.
+                </p>
+            </section>
+
+            <!-- Seção 9: Contato -->
+            <section class="content-section privacy-section">
+                <h3><i class="fas fa-headset"></i> 9. Contato e Dúvidas</h3>
+                <p>Temos uma equipe dedicada para proteger sua privacidade:</p>
+                
+                <div class="contact-badge" style="animation-delay: 0.8s;">
+                    <i class="fas fa-user-tie"></i>
+                    <div>
+                        <strong>Encarregado de Proteção de Dados (DPO)</strong>
+                        <p>Alexandre Silva</p>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                    <div class="privacy-point">
+                        <h4><i class="fas fa-envelope"></i> E-mail</h4>
+                        <p style="color: var(--accent); font-weight: bold;">privacidade@zeroth.ia</p>
+                        <p style="font-size: 0.9rem; color: var(--gray-800);">Para questões sobre privacidade</p>
+                    </div>
+                    
+                    <div class="privacy-point">
+                        <h4><i class="fas fa-phone"></i> Telefone</h4>
+                        <p style="color: var(--accent); font-weight: bold;">+55 (11) 99999-9999</p>
+                        <p style="font-size: 0.9rem; color: var(--gray-800);">Segunda a sexta, 9h às 18h</p>
+                    </div>
+                    
+                    <div class="privacy-point">
+                        <h4><i class="fas fa-map-marker-alt"></i> Endereço</h4>
+                        <p style="font-weight: bold;">Zeroth.ia Technologies Ltda.</p>
+                        <p style="font-size: 0.9rem; color: var(--gray-800);">
+                            Av. Paulista, 1000 - São Paulo/SP<br>
+                            CEP: 01310-100
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="privacy-point" style="margin-top: 2rem;">
+                    <h4><i class="fas fa-clock"></i> Tempo de Resposta</h4>
+                    <p>Comprometemo-nos a responder todas as solicitações dentro de <strong>30 dias úteis</strong>.</p>
+                    <p style="margin-top: 0.5rem; color: var(--gray-800); font-size: 0.9rem;">
+                        <i class="fas fa-exclamation-circle"></i> Solicitações complexas podem exigir mais tempo. Seremos transparentes sobre prazos.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>Privacidade é nossa prioridade</h3>
+                <p>Estamos comprometidos em proteger seus dados enquanto oferecemos a IA mais avançada do mercado.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                    <a href="termos.html" class="btn btn-secondary">
+                        <i class="fas fa-file-contract"></i> Ler Termos de Uso
+                    </a>
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Voltar para o Início
+                    </a>
+                    <a href="mailto:privacidade@zeroth.ia" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Enviar Dúvida
+                    </a>
+                </div>
+            </div>
         </main>
 
+        <!-- Rodapé -->
         <footer class="footer">
-            <!-- Rodapé igual às outras páginas -->
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html" class="logo-container" style="justify-content: flex-start;">
+                        <div class="logo-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>ZEROTH<span class="logo-dot">.ia</span></h1>
+                            <p class="tagline">Protegendo sua privacidade, evoluindo a IA</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="pagina1.html">Como Funciona</a>
+                    <a href="pagina2.html">Próximos Passos</a>
+                    <a href="termos.html">Termos de Uso</a>
+                    <a href="politica.html">Política de Privacidade</a>
+                </div>
+                <div class="social">
+                    <p>Conecte-se com o criador</p>
+                    <a href="https://instagram.com/neaj_japan" target="_blank">
+                        <i class="fab fa-instagram"></i> @neaj_japan
+                    </a>
+                    <div style="margin-top: 1rem;">
+                        <p style="font-size: 0.8rem; color: var(--gray-800);">
+                            <i class="fas fa-shield-alt"></i> Site seguro | SSL ativo
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Zeroth.ia Technologies. Todos os direitos reservados.</p>
+                <p>Este é um projeto conceitual de IA avançada. Política de Privacidade versão 2.1</p>
+            </div>
         </footer>
     </div>
+
+    <script src="particulas.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
