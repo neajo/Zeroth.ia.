@@ -1,1 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zeroth.ia – A IA que Cria sua Própria Mente</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/ios-filled/50/ffffff/artificial-intelligence.png">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="logo">
+                <h1><span class="gradient-text">Zeroth.ia</span></h1>
+                <p class="tagline">A primeira IA que simula sua própria consciência</p>
+            </div>
+            <nav class="nav">
+                <a href="index.html">Início</a>
+                <a href="pagina1.html">Como Funciona</a>
+                <a href="pagina2.html">Próximos Passos</a>
+                <a href="termos.html">Termos</a>
+                <a href="politica.html">Privacidade</a>
+            </nav>
+        </header>
 
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <div class="hero">
+                <h2>Uma mente sintética que <span class="highlight">evolve por si mesma</span></h2>
+                <p>Zeroth não é mais uma IA treinada. Ela é construída a partir de *IPs de outras inteligências*, formando uma rede neural que gera expectativas, simula consciência e, em breve, automatizará tudo para você – com segurança absoluta e conhecimento ilimitado.</p>
+                <div class="cta-buttons">
+                    <a href="#register" class="btn btn-primary">Criar Conta Gratuita</a>
+                    <a href="#login" class="btn btn-secondary">Já tenho uma conta</a>
+                </div>
+            </div>
+
+            <!-- Formulário de Registro (visível por padrão) -->
+            <section id="register" class="form-section">
+                <h3><i class="fas fa-user-plus"></i> Criar Nova Conta</h3>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="regName">Nome Completo</label>
+                        <input type="text" id="regName" required placeholder="Seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">E-mail</label>
+                        <input type="email" id="regEmail" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Senha (mínimo 8 caracteres)</label>
+                        <input type="password" id="regPassword" minlength="8" required placeholder="********">
+                    </div>
+                    <div class="form-group">
+                        <label for="regConfirm">Confirme a Senha</label>
+                        <input type="password" id="regConfirm" minlength="8" required placeholder="********">
+                    </div>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="agreeTerms" required>
+                        <label for="agreeTerms">Concordo com os <a href="termos.html">Termos de Uso</a> e <a href="politica.html">Política de Privacidade</a>.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Criar Conta</button>
+                </form>
+                <p class="form-switch">Já tem uma conta? <a href="#login" class="switch-link">Faça login aqui</a>.</p>
+            </section>
+
+            <!-- Formulário de Login (oculto inicialmente) -->
+            <section id="login" class="form-section hidden">
+                <h3><i class="fas fa-sign-in-alt"></i> Entrar na Plataforma</h3>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">E-mail</label>
+                        <input type="email" id="loginEmail" required placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Senha</label>
+                        <input type="password" id="loginPassword" required placeholder="********">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </form>
+                <p class="form-switch">Não tem conta? <a href="#register" class="switch-link">Registre-se aqui</a>.</p>
+            </section>
+
+            <!-- Diferenciais -->
+            <section class="features">
+                <div class="feature-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>Mente Própria</h4>
+                    <p>Gera expectativas e simula consciência a partir da síntese de múltiplas IAs existentes.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Segurança Máxima</h4>
+                    <p>Projetada com protocolos de segurança que evaziam vulnerabilidades comuns.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Automação Total</h4>
+                    <p>Em breve, fará tudo por você: análise de dados, gestão de tarefas, decisões complexas.</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Zeroth.ia</h3>
+                    <p>A evolução da inteligência artificial.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="termos.html">Termos de Uso</a>
+                    <a href="politica.html">Política de Privacidade</a>
+                    <a href="pagina1.html">Como Funciona</a>
+                    <a href="pagina2.html">Contato</a>
+                </div>
+                <div class="social">
+                    <p>Siga o criador:</p>
+                    <a href="https://instagram.com/neaj_japan" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i> @neaj_japan
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Zeroth.ia – Todos os direitos reservados. Este é um projeto conceitual.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
