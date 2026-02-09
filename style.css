@@ -1,1 +1,383 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+body {
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex: 1;
+}
+
+/* Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+    flex-wrap: wrap;
+}
+
+.logo h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #fff, #aaa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.tagline {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+    color: #00b3ff;
+}
+
+/* Conteúdo principal */
+.main-content {
+    padding: 40px 0;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.highlight {
+    color: #00b3ff;
+}
+
+.cta-buttons {
+    margin-top: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: #00b3ff;
+    color: #000;
+}
+
+.btn-primary:hover {
+    background-color: #0099cc;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #00b3ff;
+    border: 2px solid #00b3ff;
+}
+
+.btn-secondary:hover {
+    background-color: #00b3ff;
+    color: #000;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Formulários */
+.form-section {
+    background-color: #111;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-section h3 {
+    margin-bottom: 20px;
+    color: #00b3ff;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ccc;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #222;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #00b3ff;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox input {
+    margin-right: 10px;
+}
+
+.form-switch {
+    text-align: center;
+    margin-top: 20px;
+    color: #bbb;
+}
+
+.switch-link {
+    color: #00b3ff;
+    text-decoration: none;
+}
+
+.switch-link:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Features */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.feature-card {
+    background-color: #111;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #333;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #00b3ff;
+    margin-bottom: 15px;
+}
+
+.feature-card h4 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.feature-card p {
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+/* Rodapé */
+.footer {
+    background-color: #111;
+    padding: 40px 0 20px;
+    border-top: 1px solid #333;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-logo h3 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.footer-links a:hover {
+    color: #00b3ff;
+}
+
+.social a {
+    color: #bbb;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.social a i {
+    margin-right: 8px;
+    color: #00b3ff;
+}
+
+.copyright {
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+/* Páginas internas */
+.page-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section h3 {
+    color: #00b3ff;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.content-section ul,
+.content-section ol {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.content-section li {
+    margin-bottom: 8px;
+    color: #ccc;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.tech-item {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+}
+
+.roadmap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.roadmap-table th,
+.roadmap-table td {
+    border: 1px solid #333;
+    padding: 12px;
+    text-align: left;
+}
+
+.roadmap-table th {
+    background-color: #222;
+    color: #00b3ff;
+}
+
+.cta-box {
+    background-color: #111;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #00b3ff;
+    margin-top: 40px;
+}
+
+.cta-box h3 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.cta-box p {
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav {
+        margin-top: 20px;
+    }
+    .nav a {
+        margin: 0 10px;
+    }
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .features {
+        grid-template-columns: 1fr;
+    }
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
