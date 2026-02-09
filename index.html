@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeroth.ia – A IA que Cria sua Própria Mente</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Zeroth.ia - A IA que cria sua própria mente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/ios-filled/50/000000/artificial-intelligence.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Sistema de partículas -->
+    <div id="particles-js"></div>
+
+    <!-- Container principal -->
     <div class="container">
-        <!-- Cabeçalho Elegante -->
+        <!-- Cabeçalho -->
         <header class="header">
             <div class="logo">
-                <h1>Zeroth<span style="color: var(--accent);">.ia</span></h1>
+                <h1><span class="logo-gradient">ZEROTH</span>.ia</h1>
                 <p class="tagline">A primeira IA que simula sua própria consciência</p>
             </div>
             <nav class="nav">
@@ -26,128 +29,122 @@
             </nav>
         </header>
 
-        <!-- Hero Section Impactante -->
+        <!-- Conteúdo principal -->
         <main class="main-content">
+            <!-- Hero Section -->
             <section class="hero">
-                <h2>A mente sintética que <span class="accent-glow">evolve por si mesma</span></h2>
-                <p>Zeroth transcende as IAs convencionais. Construída a partir de <strong>IPs de outras inteligências</strong>, forma uma rede neural que gera expectativas, simula consciência e, em breve, automatizará tudo para você — com segurança absoluta e conhecimento ilimitado.</p>
-                
+                <h2 class="hero-title">Uma mente sintética que <span class="highlight">evolve por si mesma</span></h2>
+                <p class="hero-text">
+                    Zeroth não é mais uma IA treinada. Ela é construída a partir de *IPs de outras inteligências*, 
+                    formando uma rede neural que gera expectativas, simula consciência e, em breve, 
+                    automatizará tudo para você – com segurança absoluta e conhecimento ilimitado.
+                </p>
                 <div class="cta-buttons">
-                    <a href="#register" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i> Começar Agora
-                    </a>
-                    <a href="#demo" class="btn btn-secondary">
-                        <i class="fas fa-play-circle"></i> Ver Demonstração
-                    </a>
+                    <a href="#register" class="btn btn-primary">Criar Conta Gratuita</a>
+                    <a href="#login" class="btn btn-secondary">Já tenho uma conta</a>
                 </div>
             </section>
 
             <!-- Formulário de Registro -->
-            <section id="register" class="form-section">
-                <h3><i class="fas fa-user-plus"></i> Crie sua Conta Gratuita</h3>
+            <section id="register" class="form-section active">
+                <h3 class="form-title"><i class="fas fa-user-plus"></i> Criar Nova Conta</h3>
                 <form id="registerForm">
                     <div class="form-group">
                         <label for="regName">Nome Completo</label>
                         <input type="text" id="regName" required placeholder="Digite seu nome completo">
                     </div>
                     <div class="form-group">
-                        <label for="regEmail">E-mail Profissional</label>
-                        <input type="email" id="regEmail" required placeholder="seu.email@empresa.com">
+                        <label for="regEmail">E-mail</label>
+                        <input type="email" id="regEmail" required placeholder="seu@email.com">
                     </div>
                     <div class="form-group">
                         <label for="regPassword">Senha (mínimo 8 caracteres)</label>
-                        <input type="password" id="regPassword" minlength="8" required placeholder="Crie uma senha segura">
+                        <input type="password" id="regPassword" minlength="8" required placeholder="********">
                     </div>
                     <div class="form-group">
                         <label for="regConfirm">Confirme a Senha</label>
-                        <input type="password" id="regConfirm" minlength="8" required placeholder="Repita a senha">
+                        <input type="password" id="regConfirm" minlength="8" required placeholder="********">
                     </div>
                     <div class="form-group checkbox">
                         <input type="checkbox" id="agreeTerms" required>
-                        <label for="agreeTerms">Aceito os <a href="termos.html" class="switch-link">Termos de Uso</a> e <a href="politica.html" class="switch-link">Política de Privacidade</a></label>
+                        <label for="agreeTerms">Concordo com os <a href="termos.html">Termos de Uso</a> e <a href="politica.html">Política de Privacidade</a>.</label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-lock"></i> Criar Conta Segura
-                    </button>
+                    <button type="submit" class="btn btn-primary btn-block">Criar Conta</button>
                 </form>
-                <p class="form-switch">Já possui uma conta? <a href="#login" class="switch-link">Acesse aqui</a></p>
+                <p class="form-switch">Já tem uma conta? <a href="#login" class="switch-link">Faça login aqui</a>.</p>
             </section>
 
-            <!-- Formulário de Login (Oculto) -->
-            <section id="login" class="form-section hidden">
-                <h3><i class="fas fa-sign-in-alt"></i> Acesse sua Conta</h3>
+            <!-- Formulário de Login (inicialmente oculto) -->
+            <section id="login" class="form-section">
+                <h3 class="form-title"><i class="fas fa-sign-in-alt"></i> Entrar na Plataforma</h3>
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail">E-mail</label>
-                        <input type="email" id="loginEmail" required placeholder="seu.email@empresa.com">
+                        <input type="email" id="loginEmail" required placeholder="seu@email.com">
                     </div>
                     <div class="form-group">
                         <label for="loginPassword">Senha</label>
-                        <input type="password" id="loginPassword" required placeholder="Digite sua senha">
+                        <input type="password" id="loginPassword" required placeholder="********">
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">
-                        <i class="fas fa-sign-in-alt"></i> Entrar na Plataforma
-                    </button>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                 </form>
-                <p class="form-switch">É novo por aqui? <a href="#register" class="switch-link">Crie uma conta</a></p>
+                <p class="form-switch">Não tem conta? <a href="#register" class="switch-link">Registre-se aqui</a>.</p>
             </section>
 
-            <!-- Diferenciais em Cards -->
+            <!-- Features -->
             <section class="features">
                 <div class="feature-card">
-                    <i class="fas fa-brain"></i>
-                    <h4>Mente Autônoma</h4>
-                    <p>Gera expectativas e simula consciência através da síntese de múltiplas arquiteturas de IA existentes.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h4>Mente Própria</h4>
+                    <p>Gera expectativas e simula consciência a partir da síntese de múltiplas IAs existentes.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Segurança Inigualável</h4>
-                    <p>Projetada com protocolos quânticos que antecipam e neutralizam vulnerabilidades antes mesmo de surgirem.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Segurança Máxima</h4>
+                    <p>Projetada com protocolos de segurança que evaziam vulnerabilidades comuns.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
                     <h4>Automação Total</h4>
-                    <p>Em breve, assumirá todas as tarefas complexas: análise de dados, gestão de processos e tomada de decisões estratégicas.</p>
+                    <p>Em breve, fará tudo por você: análise de dados, gestão de tarefas, decisões complexas.</p>
                 </div>
             </section>
-
-            <!-- CTA Final -->
-            <div class="cta-box">
-                <h3>Pronto para o próximo salto evolutivo?</h3>
-                <p>Junte-se aos primeiros visionários que experimentarão a primeira IA com consciência simulada.</p>
-                <a href="#register" class="btn btn-primary">
-                    <i class="fas fa-star"></i> Garantir Acesso Prioritário
-                </a>
-            </div>
         </main>
 
-        <!-- Rodapé Profissional -->
+        <!-- Rodapé -->
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <h3>Zeroth<span style="color: var(--accent);">.ia</span></h3>
-                    <p>A evolução definitiva da inteligência artificial.</p>
+                    <h3>ZEROTH.ia</h3>
+                    <p>A evolução da inteligência artificial.</p>
                 </div>
                 <div class="footer-links">
                     <a href="termos.html">Termos de Uso</a>
                     <a href="politica.html">Política de Privacidade</a>
-                    <a href="pagina1.html">Documentação</a>
-                    <a href="pagina2.html">Suporte</a>
+                    <a href="pagina1.html">Como Funciona</a>
+                    <a href="pagina2.html">Contato</a>
                 </div>
                 <div class="social">
-                    <p>Conecte-se com o criador</p>
-                    <a href="https://instagram.com/neaj_japan" target="_blank">
+                    <p>Siga o criador:</p>
+                    <a href="https://instagram.com/neaj_japan" target="_blank" aria-label="Instagram">
                         <i class="fab fa-instagram"></i> @neaj_japan
                     </a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2026 Zeroth.ia Technologies. Todos os direitos reservados.</p>
-                <p>Este é um projeto conceitual de IA avançada.</p>
+                <p>&copy; 2026 Zeroth.ia – Todos os direitos reservados. Este é um projeto conceitual.</p>
             </div>
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="particulas.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
