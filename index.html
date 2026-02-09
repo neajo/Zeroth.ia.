@@ -7,6 +7,128 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para index.html */
+        .logo-gradient {
+            background: linear-gradient(90deg, #00ffd5, #0066ff, #9d00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-text {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .highlight {
+            color: #00ffd5;
+            text-shadow: 0 0 20px rgba(0, 255, 213, 0.5);
+        }
+        
+        .form-section {
+            background: rgba(10, 10, 10, 0.9);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 500px;
+            border: 1px solid rgba(0, 255, 213, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .form-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 213, 0.3);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #00ffd5;
+            box-shadow: 0 0 20px rgba(0, 255, 213, 0.2);
+        }
+        
+        .checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox input {
+            width: auto;
+        }
+        
+        .form-switch {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 213, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .switch-link {
+            color: #00ffd5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .switch-link:hover {
+            text-decoration: underline;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .form-section:not(.active) {
+            display: none;
+        }
+        
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Sistema de partículas -->
@@ -24,6 +146,7 @@
                 <a href="index.html" class="active">Início</a>
                 <a href="pagina1.html">Como Funciona</a>
                 <a href="pagina2.html">Próximos Passos</a>
+                <a href="chat.html">Chat</a>
                 <a href="termos.html">Termos</a>
                 <a href="politica.html">Privacidade</a>
             </nav>
@@ -67,7 +190,7 @@
                     </div>
                     <div class="form-group checkbox">
                         <input type="checkbox" id="agreeTerms" required>
-                        <label for="agreeTerms">Concordo com os <a href="termos.html">Termos de Uso</a> e <a href="politica.html">Política de Privacidade</a>.</label>
+                        <label for="agreeTerms">Concordo com os <a href="termos.html" class="switch-link">Termos de Uso</a> e <a href="politica.html" class="switch-link">Política de Privacidade</a>.</label>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Criar Conta</button>
                 </form>
